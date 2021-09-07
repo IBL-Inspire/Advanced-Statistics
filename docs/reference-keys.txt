@@ -1,4 +1,5 @@
 course-introduction
+general-introduction-harald
 what-to-expect-on-the-exam
 installation-guide
 about-rstudio-r-markdown
