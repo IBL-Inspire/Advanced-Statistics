@@ -10,6 +10,7 @@ exercise-swirl
 exercise-learnr-optional
 study-design
 study-design-1
+data-visualization
 birthday-cake
 exercise-easy
 exercise-medium
@@ -18,8 +19,10 @@ submission
 data
 data-inspection-manipulation-visualization
 draw-a-map-of-covid-19-cases
-exercises
+exercises-easy
 extra-data-cleaning
+exercise-medium-1
+exercise-hard-1
 statistical-tests-models
 t-test
 choosing-the-right-t-test
@@ -31,7 +34,7 @@ how-does-it-work
 two-way-multi-way-interaction
 simple-linear-regression
 ancova
-exercises-1
+exercises
 glm-recap-poisson
 placeholder
 glm-recap-binomial
