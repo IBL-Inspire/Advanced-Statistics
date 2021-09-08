@@ -180,10 +180,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exercises-easy"><i class="fa fa-check"></i><b>4.2.1</b> Exercises (easy)</a></li>
 <li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#extra-data-cleaning"><i class="fa fa-check"></i><b>4.2.2</b> Extra: Data Cleaning (*)</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#exercise-medium-1"><i class="fa fa-check"></i><b>4.3</b> Exercise (medium)</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#exercise-hard-1"><i class="fa fa-check"></i><b>4.3.1</b> Exercise (hard)</a></li>
+<li class="chapter" data-level="4.2.3" data-path="data.html"><a href="data.html#exercise-medium-1"><i class="fa fa-check"></i><b>4.2.3</b> Exercise (medium)</a></li>
+<li class="chapter" data-level="4.2.4" data-path="data.html"><a href="data.html#exercise-hard-1"><i class="fa fa-check"></i><b>4.2.4</b> Exercise (hard)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="statistical-tests-models.html"><a href="statistical-tests-models.html"><i class="fa fa-check"></i><b>5</b> Statistical Tests &amp; Models</a>
@@ -289,50 +287,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.2</span> Draw a Map of COVID-19 Cases</h2>
 <p>Can you plot the number of COVID-19 infections across the world on a specific day using just <code>plot</code>, <code>lines</code>, <code>points</code>, <code>text</code> and <code>polygon</code>? Of course… but it would probably take a very long time. If you install the following specialized packages:</p>
 <p><small></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;COVID19&quot;</span>)</span>
-<span id="cb1-2"><a href="data.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb1-3"><a href="data.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rgeos&quot;</span>)</span>
-<span id="cb1-4"><a href="data.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
-<span id="cb1-5"><a href="data.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
-<span id="cb1-6"><a href="data.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;COVID19&quot;</span>)</span>
+<span id="cb2-2"><a href="data.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb2-3"><a href="data.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rgeos&quot;</span>)</span>
+<span id="cb2-4"><a href="data.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
+<span id="cb2-5"><a href="data.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
+<span id="cb2-6"><a href="data.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;sf&quot;</span>)</span></code></pre></div>
 <p></small></p>
 <p>Here is how you could do that with <code>ggplot2</code>:</p>
 <p><small></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package required for easy access to COVID-19 data</span></span>
-<span id="cb2-2"><a href="data.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;COVID19&quot;</span>)</span>
-<span id="cb2-3"><a href="data.html#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="data.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages required for easy access to Earth data</span></span>
-<span id="cb2-5"><a href="data.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
-<span id="cb2-6"><a href="data.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
-<span id="cb2-7"><a href="data.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb2-8"><a href="data.html#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="data.html#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggplot2 and set background to white</span></span>
-<span id="cb2-10"><a href="data.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
-<span id="cb2-11"><a href="data.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb2-12"><a href="data.html#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="data.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Earth data from rnaturalearthdata package</span></span>
-<span id="cb2-14"><a href="data.html#cb2-14" aria-hidden="true" tabindex="-1"></a>Earth <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
-<span id="cb2-15"><a href="data.html#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="data.html#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Load COVID-19 data for a specific date</span></span>
-<span id="cb2-17"><a href="data.html#cb2-17" aria-hidden="true" tabindex="-1"></a>COVID19 <span class="ot">&lt;-</span> <span class="fu">covid19</span>()</span>
-<span id="cb2-18"><a href="data.html#cb2-18" aria-hidden="true" tabindex="-1"></a>maxc    <span class="ot">&lt;-</span> <span class="fu">max</span>(COVID19<span class="sc">$</span>confirmed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># maximum number of cases</span></span>
-<span id="cb2-19"><a href="data.html#cb2-19" aria-hidden="true" tabindex="-1"></a>date    <span class="ot">&lt;-</span> <span class="st">&quot;2021-06-30&quot;</span></span>
-<span id="cb2-20"><a href="data.html#cb2-20" aria-hidden="true" tabindex="-1"></a>Cases   <span class="ot">&lt;-</span> COVID19[COVID19<span class="sc">$</span>date <span class="sc">==</span> date, ]</span>
-<span id="cb2-21"><a href="data.html#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="data.html#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Data cleaning</span></span>
-<span id="cb2-23"><a href="data.html#cb2-23" aria-hidden="true" tabindex="-1"></a>countries                               <span class="ot">&lt;-</span> Cases<span class="sc">$</span>administrative_area_level_1</span>
-<span id="cb2-24"><a href="data.html#cb2-24" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;United States of America&quot;</span></span>
-<span id="cb2-25"><a href="data.html#cb2-25" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;Korea, South&quot;</span>]  <span class="ot">&lt;-</span> <span class="st">&quot;South Korea&quot;</span></span>
-<span id="cb2-26"><a href="data.html#cb2-26" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;Cote d&#39;Ivoire&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Ivory Coast&quot;</span></span>
-<span id="cb2-27"><a href="data.html#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="data.html#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Match the confirmed cases to the list of countries in the Earth data</span></span>
-<span id="cb2-29"><a href="data.html#cb2-29" aria-hidden="true" tabindex="-1"></a>wh          <span class="ot">&lt;-</span> <span class="fu">match</span>(Earth<span class="sc">$</span>admin, countries)</span>
-<span id="cb2-30"><a href="data.html#cb2-30" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>Cases <span class="ot">&lt;-</span> Cases<span class="sc">$</span>confirmed[wh]</span>
-<span id="cb2-31"><a href="data.html#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-32"><a href="data.html#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
-<span id="cb2-33"><a href="data.html#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Earth) <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Cases)) <span class="sc">+</span></span>
-<span id="cb2-34"><a href="data.html#cb2-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, maxc), <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">trans =</span> <span class="st">&quot;sqrt&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-35"><a href="data.html#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Confirmed infections on&quot;</span>, date))</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load package required for easy access to COVID-19 data</span></span>
+<span id="cb3-2"><a href="data.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;COVID19&quot;</span>)</span>
+<span id="cb3-3"><a href="data.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="data.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load packages required for easy access to Earth data</span></span>
+<span id="cb3-5"><a href="data.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rnaturalearth&quot;</span>)</span>
+<span id="cb3-6"><a href="data.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;rnaturalearthdata&quot;</span>)</span>
+<span id="cb3-7"><a href="data.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb3-8"><a href="data.html#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="data.html#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load ggplot2 and set background to white</span></span>
+<span id="cb3-10"><a href="data.html#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
+<span id="cb3-11"><a href="data.html#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb3-12"><a href="data.html#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="data.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Load Earth data from rnaturalearthdata package</span></span>
+<span id="cb3-14"><a href="data.html#cb3-14" aria-hidden="true" tabindex="-1"></a>Earth <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb3-15"><a href="data.html#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="data.html#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Load COVID-19 data for a specific date</span></span>
+<span id="cb3-17"><a href="data.html#cb3-17" aria-hidden="true" tabindex="-1"></a>COVID19 <span class="ot">&lt;-</span> <span class="fu">covid19</span>()</span>
+<span id="cb3-18"><a href="data.html#cb3-18" aria-hidden="true" tabindex="-1"></a>maxc    <span class="ot">&lt;-</span> <span class="fu">max</span>(COVID19<span class="sc">$</span>confirmed, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="co"># maximum number of cases</span></span>
+<span id="cb3-19"><a href="data.html#cb3-19" aria-hidden="true" tabindex="-1"></a>date    <span class="ot">&lt;-</span> <span class="st">&quot;2021-06-30&quot;</span></span>
+<span id="cb3-20"><a href="data.html#cb3-20" aria-hidden="true" tabindex="-1"></a>Cases   <span class="ot">&lt;-</span> COVID19[COVID19<span class="sc">$</span>date <span class="sc">==</span> date, ]</span>
+<span id="cb3-21"><a href="data.html#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="data.html#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Data cleaning</span></span>
+<span id="cb3-23"><a href="data.html#cb3-23" aria-hidden="true" tabindex="-1"></a>countries                               <span class="ot">&lt;-</span> Cases<span class="sc">$</span>administrative_area_level_1</span>
+<span id="cb3-24"><a href="data.html#cb3-24" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;United States of America&quot;</span></span>
+<span id="cb3-25"><a href="data.html#cb3-25" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;Korea, South&quot;</span>]  <span class="ot">&lt;-</span> <span class="st">&quot;South Korea&quot;</span></span>
+<span id="cb3-26"><a href="data.html#cb3-26" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;Cote d&#39;Ivoire&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Ivory Coast&quot;</span></span>
+<span id="cb3-27"><a href="data.html#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-28"><a href="data.html#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Match the confirmed cases to the list of countries in the Earth data</span></span>
+<span id="cb3-29"><a href="data.html#cb3-29" aria-hidden="true" tabindex="-1"></a>wh          <span class="ot">&lt;-</span> <span class="fu">match</span>(Earth<span class="sc">$</span>admin, countries)</span>
+<span id="cb3-30"><a href="data.html#cb3-30" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>Cases <span class="ot">&lt;-</span> Cases<span class="sc">$</span>confirmed[wh]</span>
+<span id="cb3-31"><a href="data.html#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="data.html#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the data</span></span>
+<span id="cb3-33"><a href="data.html#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Earth) <span class="sc">+</span> <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> Cases)) <span class="sc">+</span></span>
+<span id="cb3-34"><a href="data.html#cb3-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, maxc), <span class="at">option =</span> <span class="st">&quot;plasma&quot;</span>, <span class="at">trans =</span> <span class="st">&quot;sqrt&quot;</span>) <span class="sc">+</span></span>
+<span id="cb3-35"><a href="data.html#cb3-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="fu">paste</span>(<span class="st">&quot;Confirmed infections on&quot;</span>, date))</span></code></pre></div>
 <p></small></p>
 <p>Provided you have the latest version of R installed and the required packages were installed correctly, this will return the following:</p>
 <p><img src="figures/COVIDEarth.png" width="1008" /></p>
@@ -360,17 +358,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The COVID-19 and Earth data sets use different names for countries. So how did I know what names to replace with what?</p>
 <p>You could simply print both lists of countries and manually look for names that are written differently in both data sets:</p>
 <p><small></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Country names in the Earth data set</span></span>
-<span id="cb3-2"><a href="data.html#cb3-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin</span>
-<span id="cb3-3"><a href="data.html#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="data.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Country names in the COVID-19 data set</span></span>
-<span id="cb3-5"><a href="data.html#cb3-5" aria-hidden="true" tabindex="-1"></a>countries</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Country names in the Earth data set</span></span>
+<span id="cb4-2"><a href="data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin</span>
+<span id="cb4-3"><a href="data.html#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="data.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Country names in the COVID-19 data set</span></span>
+<span id="cb4-5"><a href="data.html#cb4-5" aria-hidden="true" tabindex="-1"></a>countries</span></code></pre></div>
 <p></small></p>
 <p>But these commands will return lists of over 200 countries… A much easier way is to simply look at which countries were unavailable after the matching step. For example:</p>
 <p><small></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data.html#cb4-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">&lt;-</span> Cases<span class="sc">$</span>administrative_area_level_1</span>
-<span id="cb4-2"><a href="data.html#cb4-2" aria-hidden="true" tabindex="-1"></a>wh        <span class="ot">&lt;-</span> <span class="fu">match</span>(Earth<span class="sc">$</span>admin, countries)</span>
-<span id="cb4-3"><a href="data.html#cb4-3" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">is.na</span>(wh)]</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data.html#cb5-1" aria-hidden="true" tabindex="-1"></a>countries <span class="ot">&lt;-</span> Cases<span class="sc">$</span>administrative_area_level_1</span>
+<span id="cb5-2"><a href="data.html#cb5-2" aria-hidden="true" tabindex="-1"></a>wh        <span class="ot">&lt;-</span> <span class="fu">match</span>(Earth<span class="sc">$</span>admin, countries)</span>
+<span id="cb5-3"><a href="data.html#cb5-3" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">is.na</span>(wh)]</span></code></pre></div>
 <pre><code>##  [1] &quot;Aruba&quot;                                   
 ##  [2] &quot;Anguilla&quot;                                
 ##  [3] &quot;Aland&quot;                                   
@@ -384,14 +382,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This gives us a list of <em>only</em> the countries in the <code>Earth</code> data set that were <em>not</em> matched. Here we see that, for instance, <code>"United States of America"</code> was not matched to the COVID-19 data, even though we know there were large number of cases in the US.</p>
 <p>The next step is to see how this country is called in the other data set. Again, you could just look at all the names in the variable <code>countries</code>, but how about we only check countries which name contains a capital letter “U”:</p>
 <p><small></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="data.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries in the COVID-19 data set with a capital letter U</span></span>
-<span id="cb6-2"><a href="data.html#cb6-2" aria-hidden="true" tabindex="-1"></a>countries[<span class="fu">grep</span>(<span class="st">&quot;U&quot;</span>, countries)]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries in the COVID-19 data set with a capital letter U</span></span>
+<span id="cb7-2"><a href="data.html#cb7-2" aria-hidden="true" tabindex="-1"></a>countries[<span class="fu">grep</span>(<span class="st">&quot;U&quot;</span>, countries)]</span></code></pre></div>
 <pre><code>## [1] &quot;United Arab Emirates&quot;     &quot;United Kingdom&quot;          
 ## [3] &quot;Uganda&quot;                   &quot;Ukraine&quot;                 
 ## [5] &quot;Uruguay&quot;                  &quot;United States of America&quot;
 ## [7] &quot;Uzbekistan&quot;               &quot;Virgin Islands, U.S.&quot;</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries in the Earth data set with a capital letter U</span></span>
-<span id="cb8-2"><a href="data.html#cb8-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">grep</span>(<span class="st">&quot;U&quot;</span>, Earth<span class="sc">$</span>admin)]</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries in the Earth data set with a capital letter U</span></span>
+<span id="cb9-2"><a href="data.html#cb9-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">grep</span>(<span class="st">&quot;U&quot;</span>, Earth<span class="sc">$</span>admin)]</span></code></pre></div>
 <pre><code>## [1] &quot;United Arab Emirates&quot;         &quot;United Kingdom&quot;              
 ## [3] &quot;United Republic of Tanzania&quot;  &quot;Uganda&quot;                      
 ## [5] &quot;Ukraine&quot;                      &quot;Uruguay&quot;                     
@@ -401,29 +399,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Here we see the problem: In the COVID-19 data set, the US is called <code>"United States"</code>, whereas in the <code>Earth</code> data set it is called <code>"United States of America"</code>. <small><em>(In the original script, I already changed this for the United States, South Korea and the Ivory Coast.)</em></small></p>
 <p>The solution is to overwrite the name so they are both the same:</p>
 <p><small></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data.html#cb10-1" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;United States of America&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data.html#cb11-1" aria-hidden="true" tabindex="-1"></a>countries[countries <span class="sc">==</span> <span class="st">&quot;United States&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;United States of America&quot;</span></span></code></pre></div>
 <p></small></p>
 <p>And like that, you can check all the unmatched countries for perhaps other names they might be known by.</p>
 <p>Here is another example:</p>
 <p><small></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries containing &quot;Congo&quot; in the COVID-19 data set</span></span>
-<span id="cb11-2"><a href="data.html#cb11-2" aria-hidden="true" tabindex="-1"></a>countries[<span class="fu">grep</span>(<span class="st">&quot;Congo&quot;</span>, countries)]</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries containing &quot;Congo&quot; in the COVID-19 data set</span></span>
+<span id="cb12-2"><a href="data.html#cb12-2" aria-hidden="true" tabindex="-1"></a>countries[<span class="fu">grep</span>(<span class="st">&quot;Congo&quot;</span>, countries)]</span></code></pre></div>
 <pre><code>## [1] &quot;Congo, the Democratic Republic of the&quot;
 ## [2] &quot;Congo&quot;</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries containing &quot;Congo&quot; in the Earth data set</span></span>
-<span id="cb13-2"><a href="data.html#cb13-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">grep</span>(<span class="st">&quot;Congo&quot;</span>, Earth<span class="sc">$</span>admin)]</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Countries containing &quot;Congo&quot; in the Earth data set</span></span>
+<span id="cb14-2"><a href="data.html#cb14-2" aria-hidden="true" tabindex="-1"></a>Earth<span class="sc">$</span>admin[<span class="fu">grep</span>(<span class="st">&quot;Congo&quot;</span>, Earth<span class="sc">$</span>admin)]</span></code></pre></div>
 <pre><code>## [1] &quot;Democratic Republic of the Congo&quot; &quot;Republic of Congo&quot;</code></pre>
 <p></small></p>
 </div>
-</div>
-<div id="exercise-medium-1" class="section level2" number="4.3">
-<h2><span class="header-section-number">4.3</span> Exercise (medium)</h2>
+<div id="exercise-medium-1" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Exercise (medium)</h3>
 <ol style="list-style-type: decimal">
 <li>As you can see above, the two Congos have different names in either data set. Read the original script carefully. Add what you think is necessary to color the two Congos as well. To see if it works, simply run the script again to produce the (new) figure.</li>
 <li>Using the method described above, can you color any other countries which are now grey? <small><em>(Hint: Some countries do not have any data on confirmed cases, like Turkmenistan and North Korea. You can leave these uncolored.)</em></small></li>
 </ol>
-<div id="exercise-hard-1" class="section level3" number="4.3.1">
-<h3><span class="header-section-number">4.3.1</span> Exercise (hard)</h3>
+</div>
+<div id="exercise-hard-1" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Exercise (hard)</h3>
 <ol start="3" style="list-style-type: decimal">
 <li>Adjust the script to draw the number of coronavirus cases on a given day, relative to the <strong>population size</strong> of each country, and then adjust the plot to zoom in on the continent of Asia. <small><em>(There is already a variable somewhere that contains the required information.)</em></small></li>
 </ol>
