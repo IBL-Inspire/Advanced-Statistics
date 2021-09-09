@@ -1,0 +1,85 @@
+---
+title: "Choose the Right Test or Model (student version)"
+author: "Dr. F.J. Rodenburg"
+date: "9/9/2021"
+output: pdf_document
+---
+
+Save this file and "Day5.Rdata" in the same location. Then, after opening this file, go to **Session** > **Set Working Directory** > **To Source File Location**.
+
+Then run this:
+
+```{r}
+load("Day5.Rdata")
+```
+
+This will load 9 data sets into your working environment. The number after each data set represents the question it belongs to.
+
+The goal is to analyze as many of thes data sets as possible:
+
+* Choose the right model for as many questions as possible. Explain your choice below the respective code chunk;
+* Try to perform model diagnostics if applicable;
+* Produce a summary and write a conclusion in words, below the code chunk.
+
+Good luck!
+
+---
+
+1. Crop yield (kg) is compared for different concentrations of insect spray.
+
+```{r}
+
+```
+
+2. The height of trees of the same species is compared on two types of soil.
+
+```{r}
+
+```
+
+3. Crop yield (kg) is compared for three types of insect sprays.
+
+```{r}
+
+```
+
+4. A study assesses how much more likely patients are to have cancer, based on smoking behavior and sex.
+
+```{r}
+
+```
+
+
+5. Tree density is compared before and after conservation policy changes.
+
+```{r}
+
+```
+
+6. A company wants to know whether smoking is more common among its male or female workers.
+
+```{r}
+
+```
+
+
+7. A study on shark conservation catches and tags sharks and then compares how many there are in different areas.
+
+```{r}
+
+```
+
+
+8. Crop yield (kg) is compared for different combinations of type of insect spray and concentration.
+
+```{r}
+
+```
+
+
+9. Mortality rates of male and female rats are compared after short-term exposure to different concentrations of hydrogen sulfide ($\text{H}_2\text{S}$, measured in ppm).
+
+```{r}
+
+```
+
