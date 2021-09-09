@@ -176,12 +176,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4" data-path="data.html"><a href="data.html"><i class="fa fa-check"></i><b>4</b> Data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="data.html"><a href="data.html#data-inspection-manipulation-visualization"><i class="fa fa-check"></i><b>4.1</b> Data Inspection, Manipulation &amp; Visualization</a></li>
-<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#draw-a-map-of-covid-19-cases"><i class="fa fa-check"></i><b>4.2</b> Draw a Map of COVID-19 Cases</a>
+<li class="chapter" data-level="4.2" data-path="data.html"><a href="data.html#cake-submission-evaluation"><i class="fa fa-check"></i><b>4.2</b> Cake Submission Evaluation</a></li>
+<li class="chapter" data-level="4.3" data-path="data.html"><a href="data.html#draw-a-map-of-covid-19-cases"><i class="fa fa-check"></i><b>4.3</b> Draw a Map of COVID-19 Cases</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="data.html"><a href="data.html#exercises-easy"><i class="fa fa-check"></i><b>4.2.1</b> Exercises (easy)</a></li>
-<li class="chapter" data-level="4.2.2" data-path="data.html"><a href="data.html#extra-data-cleaning"><i class="fa fa-check"></i><b>4.2.2</b> Extra: Data Cleaning (*)</a></li>
-<li class="chapter" data-level="4.2.3" data-path="data.html"><a href="data.html#exercise-medium-1"><i class="fa fa-check"></i><b>4.2.3</b> Exercise (medium)</a></li>
-<li class="chapter" data-level="4.2.4" data-path="data.html"><a href="data.html#exercise-hard-1"><i class="fa fa-check"></i><b>4.2.4</b> Exercise (hard)</a></li>
+<li class="chapter" data-level="4.3.1" data-path="data.html"><a href="data.html#exercises-easy"><i class="fa fa-check"></i><b>4.3.1</b> Exercises (easy)</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data.html"><a href="data.html#extra-data-cleaning"><i class="fa fa-check"></i><b>4.3.2</b> Extra: Data Cleaning (*)</a></li>
+<li class="chapter" data-level="4.3.3" data-path="data.html"><a href="data.html#exercise-medium-1"><i class="fa fa-check"></i><b>4.3.3</b> Exercise (medium)</a></li>
+<li class="chapter" data-level="4.3.4" data-path="data.html"><a href="data.html#exercise-hard-1"><i class="fa fa-check"></i><b>4.3.4</b> Exercise (hard)</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="statistical-tests-models.html"><a href="statistical-tests-models.html"><i class="fa fa-check"></i><b>5</b> Statistical Tests &amp; Models</a>
@@ -281,10 +282,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <div id="data-inspection-manipulation-visualization" class="section level2" number="4.1">
 <h2><span class="header-section-number">4.1</span> Data Inspection, Manipulation &amp; Visualization</h2>
-<p>[video to be included]</p>
+<p><small><em>In this lecture Harald gives a demonstration of how you can read and manipulate data in R.</em></small></p>
+<iframe src="https://www.youtube.com/embed/mhSsqxX73wo?t=2024" width="672" height="400px">
+</iframe>
+<p><strong>Note</strong>: If embedding is disabled (not allowed), you will get a playback error. In that case, you can watch the video <a href="https://youtu.be/mhSsqxX73wo?t=2024">here</a>. I will ask Harald to allow embedding later.</p>
 </div>
-<div id="draw-a-map-of-covid-19-cases" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Draw a Map of COVID-19 Cases</h2>
+<div id="cake-submission-evaluation" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Cake Submission Evaluation</h2>
+<p><small><em>In this lecture we have a look at all your wonderful submissions.</em></small></p>
+<iframe src="https://www.youtube.com/embed/ERXp51uHp2w" width="672" height="400px">
+</iframe>
+</div>
+<div id="draw-a-map-of-covid-19-cases" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Draw a Map of COVID-19 Cases</h2>
 <p>Can you plot the number of COVID-19 infections across the world on a specific day using just <code>plot</code>, <code>lines</code>, <code>points</code>, <code>text</code> and <code>polygon</code>? Of course… but it would probably take a very long time. If you install the following specialized packages:</p>
 <p><small></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;COVID19&quot;</span>)</span>
@@ -335,8 +345,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Provided you have the latest version of R installed and the required packages were installed correctly, this will return the following:</p>
 <p><img src="figures/COVIDEarth.png" width="1008" /></p>
 <p>Using less than 50 lines of code, we now have a script that generates a world map colored by the number of infections on a particular day.</p>
-<div id="exercises-easy" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Exercises (easy)</h3>
+<div id="exercises-easy" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Exercises (easy)</h3>
 <p>If you get stuck on any of the exercises, you can watch the video below to get unstuck. <b>In case of installation problems</b>, contact one of the supervisors or assistants, or work together with a student who has successfully installed the packages.</p>
 <ol style="list-style-type: decimal">
 <li>Install the required packages and run the script to reproduce the figure.</li>
@@ -352,8 +362,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><strong>[video explaining the entire script to be included]</strong></p>
 </div>
-<div id="extra-data-cleaning" class="section level3" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Extra: Data Cleaning (*)</h3>
+<div id="extra-data-cleaning" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Extra: Data Cleaning (*)</h3>
 <p><small><em>If you have time left, you can try and complete the additional exercises here.</em></small></p>
 <p>The COVID-19 and Earth data sets use different names for countries. So how did I know what names to replace with what?</p>
 <p>You could simply print both lists of countries and manually look for names that are written differently in both data sets:</p>
@@ -413,15 +423,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;Democratic Republic of the Congo&quot; &quot;Republic of Congo&quot;</code></pre>
 <p></small></p>
 </div>
-<div id="exercise-medium-1" class="section level3" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Exercise (medium)</h3>
+<div id="exercise-medium-1" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Exercise (medium)</h3>
 <ol style="list-style-type: decimal">
 <li>As you can see above, the two Congos have different names in either data set. Read the original script carefully. Add what you think is necessary to color the two Congos as well. To see if it works, simply run the script again to produce the (new) figure.</li>
 <li>Using the method described above, can you color any other countries which are now grey? <small><em>(Hint: Some countries do not have any data on confirmed cases, like Turkmenistan and North Korea. You can leave these uncolored.)</em></small></li>
 </ol>
 </div>
-<div id="exercise-hard-1" class="section level3" number="4.2.4">
-<h3><span class="header-section-number">4.2.4</span> Exercise (hard)</h3>
+<div id="exercise-hard-1" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Exercise (hard)</h3>
 <ol start="3" style="list-style-type: decimal">
 <li>Adjust the script to draw the number of coronavirus cases on a given day, relative to the <strong>population size</strong> of each country, and then adjust the plot to zoom in on the continent of Asia. <small><em>(There is already a variable somewhere that contains the required information.)</em></small></li>
 </ol>

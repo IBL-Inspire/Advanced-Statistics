@@ -18,6 +18,7 @@ exercise-hard
 submission
 data
 data-inspection-manipulation-visualization
+cake-submission-evaluation
 draw-a-map-of-covid-19-cases
 exercises-easy
 extra-data-cleaning
